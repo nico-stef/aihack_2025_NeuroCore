@@ -37,7 +37,6 @@ export const AppSidebar = () => {
   ];
 
   const managerItems = [
-    { title: "Dashboard", url: "/manager", icon: LayoutDashboard },
     { title: "Team Management", url: "/team", icon: Users },
     { title: "Projects", url: "/projects", icon: FolderKanban },
     { title: "Tasks", url: "/tasks", icon: CheckSquare },

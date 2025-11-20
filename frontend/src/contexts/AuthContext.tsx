@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (userData.role === "superadmin") {
         navigate("/admin");
       } else if (userData.role === "manager") {
-        navigate("/manager");
+        navigate("/team");
       } else {
         navigate("/dashboard");
       }
