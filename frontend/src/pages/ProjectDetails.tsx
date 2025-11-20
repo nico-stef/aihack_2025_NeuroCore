@@ -5,6 +5,9 @@ import { projectsApi, tasksApi, teamsApi, githubApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ExternalLink, GitBranch, GitPullRequest, AlertCircle, Users, Plus, X } from "lucide-react";
 import { TaskList } from "@/components/TaskList";
 import { useAuth } from "@/contexts/AuthContext";
@@ -41,7 +44,15 @@ export default function ProjectDetails() {
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [taskDialogOpen, setTaskDialogOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<string>("");
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    assignedTo: "",
+    priority: "medium",
+    estimateHours: ""
+  });
 
   const fetchGithubStats = async () => {
     if (!id || user?.role !== 'manager') return;
@@ -51,6 +62,17 @@ export default function ProjectDetails() {
       setGithubStats(stats);
     } catch (error) {
       console.error("Failed to fetch GitHub stats:", error);
+    }
+  };
+
+  const fetchProjectTasks = async () => {
+    if (!id) return;
+
+    try {
+      const tasksData = await tasksApi.getAll({ projectId: id });
+      setProjectTasks(tasksData);
+    } catch (error) {
+      console.error("Failed to fetch tasks:", error);
     }
   };
 
@@ -121,6 +143,43 @@ export default function ProjectDetails() {
       toast.error("Failed to sync GitHub activity");
     } finally {
       setSyncing(false);
+    }
+  };
+
+  const handleCreateTask = async () => {
+    if (!newTask.title || !id) {
+      toast.error("Please fill in required fields");
+      return;
+    }
+
+    try {
+      const taskData = {
+        projectId: id,
+        title: newTask.title,
+        description: newTask.description,
+        assignedTo: newTask.assignedTo || undefined,
+        createdBy: user?.id,
+        priority: newTask.priority,
+        estimateHours: newTask.estimateHours ? parseFloat(newTask.estimateHours) : undefined,
+        status: 'to-do'
+      };
+
+      await tasksApi.create(taskData);
+
+      // Refresh tasks
+      await fetchProjectTasks();
+
+      setNewTask({
+        title: "",
+        description: "",
+        assignedTo: "",
+        priority: "medium",
+        estimateHours: ""
+      });
+      setTaskDialogOpen(false);
+      toast.success("Task created successfully");
+    } catch (error) {
+      toast.error("Failed to create task");
     }
   };
 
@@ -372,11 +431,96 @@ export default function ProjectDetails() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Project Tasks</CardTitle>
-              <CardDescription>All tasks for this project</CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Project Tasks</CardTitle>
+                  <CardDescription>All tasks for this project</CardDescription>
+                </div>
+                {user?.role === 'manager' && (
+                  <Dialog open={taskDialogOpen} onOpenChange={setTaskDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button size="sm">
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add Task
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Create New Task</DialogTitle>
+                        <DialogDescription>
+                          Add a new task to this project
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="task-title">Task Title *</Label>
+                          <Input
+                            id="task-title"
+                            placeholder="Implement login feature"
+                            value={newTask.title}
+                            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="task-description">Description</Label>
+                          <Textarea
+                            id="task-description"
+                            placeholder="Add task details..."
+                            value={newTask.description}
+                            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="task-assignee">Assign To</Label>
+                          <Select value={newTask.assignedTo} onValueChange={(value) => setNewTask({ ...newTask, assignedTo: value })}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a member" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {project?.members?.map((member: any) => (
+                                <SelectItem key={member._id || member.id} value={member._id || member.id}>
+                                  {member.name} ({member.role})
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="task-priority">Priority</Label>
+                            <Select value={newTask.priority} onValueChange={(value) => setNewTask({ ...newTask, priority: value })}>
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="low">Low</SelectItem>
+                                <SelectItem value="medium">Medium</SelectItem>
+                                <SelectItem value="high">High</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="task-estimate">Estimate (hours)</Label>
+                            <Input
+                              id="task-estimate"
+                              type="number"
+                              placeholder="8"
+                              value={newTask.estimateHours}
+                              onChange={(e) => setNewTask({ ...newTask, estimateHours: e.target.value })}
+                            />
+                          </div>
+                        </div>
+                        <Button onClick={handleCreateTask} className="w-full" disabled={!newTask.title}>
+                          Create Task
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
+              </div>
             </CardHeader>
             <CardContent>
-              <TaskList tasks={projectTasks} />
+              <TaskList tasks={projectTasks} onTaskUpdate={fetchProjectTasks} />
             </CardContent>
           </Card>
         </div>

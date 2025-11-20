@@ -10,6 +10,8 @@ export interface Task {
   projectId: string;
   estimatedHours: number;
   actualHours: number;
+  startedAt?: string;
+  completedAt?: string;
   createdAt: string;
   dueDate: string;
 }

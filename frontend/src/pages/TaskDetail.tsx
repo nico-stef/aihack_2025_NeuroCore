@@ -18,7 +18,7 @@ export default function TaskDetail() {
   useEffect(() => {
     const fetchTask = async () => {
       if (!id) return;
-      
+
       try {
         const taskData = await tasksApi.getById(id);
         setTask(taskData);
@@ -60,13 +60,13 @@ export default function TaskDetail() {
   };
 
   const getStatusLabel = (status: string) => {
-    return status.split('-').map(word => 
+    return status.split('-').map(word =>
       word.charAt(0).toUpperCase() + word.slice(1)
     ).join(' ');
   };
 
-  const timeProgress = task.estimatedHours > 0 
-    ? (task.actualHours / task.estimatedHours) * 100 
+  const timeProgress = task.estimatedHours > 0
+    ? (task.actualHours / task.estimatedHours) * 100
     : 0;
 
   const isOverdue = new Date(task.dueDate) < new Date() && task.status !== "done";
@@ -84,11 +84,6 @@ export default function TaskDetail() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold">{task.title}</h1>
-            <p className="text-muted-foreground mt-1">
-              Project: <Link to={`/projects/${project?.id}`} className="text-primary hover:underline">
-                {project?.name}
-              </Link>
-            </p>
           </div>
           <div className="flex gap-2">
             <Badge variant={getPriorityColor(task.priority)}>
@@ -160,22 +155,6 @@ export default function TaskDetail() {
         </div>
 
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <Button className="w-full" variant="outline">
-                Edit Task
-              </Button>
-              <Button className="w-full" variant="outline">
-                Change Status
-              </Button>
-              <Button className="w-full" variant="outline">
-                Reassign Task
-              </Button>
-            </CardContent>
-          </Card>
 
           <Card>
             <CardHeader>

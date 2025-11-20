@@ -202,6 +202,16 @@ export const tasksApi = {
     return response.json();
   },
 
+  updateStatus: async (id: string, status: string) => {
+    const response = await fetch(`${API_URL}/tasks/${id}/status`, {
+      method: 'PATCH',
+      headers: getHeaders(),
+      body: JSON.stringify({ status }),
+    });
+    if (!response.ok) throw new Error('Failed to update task status');
+    return response.json();
+  },
+
   delete: async (id: string) => {
     const response = await fetch(`${API_URL}/tasks/${id}`, {
       method: 'DELETE',

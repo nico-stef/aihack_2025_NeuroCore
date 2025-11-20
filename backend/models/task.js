@@ -10,7 +10,9 @@ const taskSchema = new Schema({
     status: { type: String, enum: ['to-do', 'in-progress', 'done'], default: 'to-do' },
     priority: { type: String, enum: ['low', 'medium', 'high'], default: 'medium' },
     estimateHours: Number,
-    realHours: Number
+    realHours: Number, //adică durata dintre startedAt și completedAt.
+    startedAt: Date,
+    completedAt: Date
 }, { timestamps: true });
 
 export default model('Task', taskSchema);   

@@ -12,27 +12,27 @@ export default function MyTasks() {
   const [myTasks, setMyTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMyTasks = async () => {
-      if (!user?.id) {
-        console.log("No user ID found, user:", user);
-        setLoading(false);
-        return;
-      }
-      
-      try {
-        console.log("Fetching tasks for user:", user.id);
-        const tasks = await tasksApi.getAll({ assignedTo: user.id });
-        console.log("Fetched tasks:", tasks);
-        setMyTasks(tasks);
-      } catch (error) {
-        toast.error("Failed to load your tasks");
-        console.error("Error fetching tasks:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchMyTasks = async () => {
+    if (!user?.id) {
+      console.log("No user ID found, user:", user);
+      setLoading(false);
+      return;
+    }
 
+    try {
+      console.log("Fetching tasks for user:", user.id);
+      const tasks = await tasksApi.getAll({ assignedTo: user.id });
+      console.log("Fetched tasks:", tasks);
+      setMyTasks(tasks);
+    } catch (error) {
+      toast.error("Failed to load your tasks");
+      console.error("Error fetching tasks:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchMyTasks();
   }, [user?.id]);
 
@@ -129,19 +129,19 @@ export default function MyTasks() {
               <TabsTrigger value="done">Done ({doneTasks.length})</TabsTrigger>
             </TabsList>
             <TabsContent value="all" className="mt-4">
-              <TaskList tasks={myTasks} />
+              <TaskList tasks={myTasks} onTaskUpdate={fetchMyTasks} />
             </TabsContent>
             <TabsContent value="todo" className="mt-4">
-              <TaskList tasks={todoTasks} />
+              <TaskList tasks={todoTasks} onTaskUpdate={fetchMyTasks} />
             </TabsContent>
             <TabsContent value="in-progress" className="mt-4">
-              <TaskList tasks={inProgressTasks} />
+              <TaskList tasks={inProgressTasks} onTaskUpdate={fetchMyTasks} />
             </TabsContent>
             <TabsContent value="review" className="mt-4">
-              <TaskList tasks={reviewTasks} />
+              <TaskList tasks={reviewTasks} onTaskUpdate={fetchMyTasks} />
             </TabsContent>
             <TabsContent value="done" className="mt-4">
-              <TaskList tasks={doneTasks} />
+              <TaskList tasks={doneTasks} onTaskUpdate={fetchMyTasks} />
             </TabsContent>
           </Tabs>
         </CardContent>
