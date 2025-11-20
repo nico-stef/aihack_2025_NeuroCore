@@ -35,7 +35,21 @@ export default function TeamManagement() {
           usersApi.getAll(),
           teamsApi.getAll()
         ]);
-        setTeamMembers(usersData.filter((u: any) => u.role !== "superadmin"));
+        
+        // Get all member IDs from all teams
+        const allTeamMemberIds = new Set<string>();
+        teamsData.forEach((team: any) => {
+          team.members.forEach((member: any) => {
+            allTeamMemberIds.add(member.id || member._id || member);
+          });
+        });
+        
+        // Filter users who are in teams and not superadmin
+        const membersInTeams = usersData.filter((u: any) => 
+          u.role !== "superadmin" && allTeamMemberIds.has(u.id || u._id)
+        );
+        
+        setTeamMembers(membersInTeams);
         setTeams(teamsData);
       } catch (error) {
         toast.error("Failed to load team members");
@@ -91,19 +105,27 @@ export default function TeamManagement() {
       // Remove member from team
       await teamsApi.removeMember(userTeam.id, userId);
       
-      // Update local state
-      setTeamMembers(teamMembers.filter(m => m.id !== userId));
+      // Reload data from backend to ensure consistency
+      const [usersData, teamsData] = await Promise.all([
+        usersApi.getAll(),
+        teamsApi.getAll()
+      ]);
       
-      // Update teams state
-      setTeams(teams.map(team => {
-        if (team.id === userTeam.id) {
-          return {
-            ...team,
-            members: team.members.filter((m: any) => m.id !== userId && m._id !== userId)
-          };
-        }
-        return team;
-      }));
+      // Get all member IDs from all teams
+      const allTeamMemberIds = new Set<string>();
+      teamsData.forEach((team: any) => {
+        team.members.forEach((member: any) => {
+          allTeamMemberIds.add(member.id || member._id || member);
+        });
+      });
+      
+      // Filter users who are in teams and not superadmin
+      const membersInTeams = usersData.filter((u: any) => 
+        u.role !== "superadmin" && allTeamMemberIds.has(u.id || u._id)
+      );
+      
+      setTeamMembers(membersInTeams);
+      setTeams(teamsData);
       
       toast.success("Team member removed from team");
     } catch (error) {
