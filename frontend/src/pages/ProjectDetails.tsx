@@ -1,12 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { projectsApi, tasksApi, teamsApi } from "@/lib/api";
+import { projectsApi, tasksApi, teamsApi, githubApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ExternalLink, GitBranch, GitPullRequest, AlertCircle, Users, Plus, X } from "lucide-react";
-import { GithubActivityPanel } from "@/components/GithubActivityPanel";
 import { TaskList } from "@/components/TaskList";
 import { useAuth } from "@/contexts/AuthContext";
 import NotFound from "./NotFound";
@@ -26,15 +25,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-// Mock GitHub activity for now
-const mockGitHubActivity: any = {
-  commits: 0,
-  pullRequests: 0,
-  issues: 0,
-  lastCommit: "N/A",
-  recentCommits: []
-};
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -42,9 +37,22 @@ export default function ProjectDetails() {
   const [project, setProject] = useState<any>(null);
   const [projectTasks, setProjectTasks] = useState<any[]>([]);
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [githubStats, setGithubStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<string>("");
+
+  const fetchGithubStats = async () => {
+    if (!id || user?.role !== 'manager') return;
+
+    try {
+      const stats = await githubApi.getProjectStats(id);
+      setGithubStats(stats);
+    } catch (error) {
+      console.error("Failed to fetch GitHub stats:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,6 +70,9 @@ export default function ProjectDetails() {
         if (user?.role === 'manager' && projectData.teamId) {
           const teamData = await teamsApi.getById(projectData.teamId._id || projectData.teamId);
           setTeamMembers(teamData.members || []);
+
+          // Fetch GitHub statistics for the project
+          await fetchGithubStats();
         }
       } catch (error) {
         toast.error("Failed to load project");
@@ -98,6 +109,21 @@ export default function ProjectDetails() {
     }
   };
 
+  const handleSyncGithub = async () => {
+    if (!id) return;
+
+    setSyncing(true);
+    try {
+      await githubApi.syncProject(id);
+      toast.success("GitHub activity synced successfully");
+      await fetchGithubStats();
+    } catch (error) {
+      toast.error("Failed to sync GitHub activity");
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   // Filter team members who are not already in the project
   const availableMembers = teamMembers.filter(
     member => !project?.members?.some((pm: any) =>
@@ -116,7 +142,6 @@ export default function ProjectDetails() {
   const completed = projectTasks.filter(t => t.status === "done").length;
   const inProgress = projectTasks.filter(t => t.status === "in-progress").length;
   const progress = projectTasks.length > 0 ? (completed / projectTasks.length) * 100 : 0;
-  const githubActivity = mockGitHubActivity;
 
   return (
     <div className="space-y-6">
@@ -188,6 +213,144 @@ export default function ProjectDetails() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
+          {/* Burnout Risk Alerts - Only for Managers */}
+          {user?.role === 'manager' && githubStats?.alerts && githubStats.alerts.length > 0 && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>High Burnout Risk Detected</AlertTitle>
+              <AlertDescription>
+                {githubStats.alerts.map((alert: any, idx: number) => (
+                  <div key={idx} className="mt-1">
+                    <strong>{alert.memberName}</strong>: {alert.message}
+                  </div>
+                ))}
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* GitHub Statistics - Only for Managers */}
+          {user?.role === 'manager' && (
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Team Burnout Analysis</CardTitle>
+                    <CardDescription>
+                      Based on commits and task load
+                      {githubStats?.summary?.totalCommits > 0 && (
+                        <span className="ml-2">• {githubStats.summary.totalCommits} total commits</span>
+                      )}
+                    </CardDescription>
+                  </div>
+                  {githubStats?.canSync && (
+                    <Button
+                      size="sm"
+                      onClick={handleSyncGithub}
+                      disabled={syncing}
+                    >
+                      {syncing ? "Syncing..." : "Sync GitHub"}
+                    </Button>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent>
+                {!githubStats?.hasToken && (
+                  <Alert className="mb-4">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>
+                      Manager needs to configure GitHub token to sync data
+                    </AlertDescription>
+                  </Alert>
+                )}
+                <div className="space-y-4">
+                  {githubStats?.memberStats && githubStats.memberStats.length > 0 ? (
+                    githubStats.memberStats.map((member: any) => {
+                      const riskColor = member.riskLevel === 'high' ? 'text-red-600' :
+                        member.riskLevel === 'medium' ? 'text-yellow-600' : 'text-green-600';
+                      const bgColor = member.riskLevel === 'high' ? 'bg-red-100' :
+                        member.riskLevel === 'medium' ? 'bg-yellow-100' : 'bg-green-100';
+
+                      return (
+                        <div key={member.userId} className="p-3 rounded-lg border">
+                          <div className="flex items-center justify-between mb-2">
+                            <div>
+                              <p className="font-medium">{member.memberName}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {member.role}
+                                {member.githubUsername !== 'Not set' && (
+                                  <span className="ml-2">• @{member.githubUsername}</span>
+                                )}
+                              </p>
+                            </div>
+                            <Badge className={bgColor + ' ' + riskColor}>
+                              {member.riskLevel.toUpperCase()} - {member.burnoutRisk}%
+                            </Badge>
+                          </div>
+                          <div className="grid grid-cols-4 gap-2 text-xs text-muted-foreground mb-2">
+                            <div>
+                              <span className="font-medium">Commits:</span> {member.commits}
+                            </div>
+                            <div>
+                              <span className="font-medium">PRs:</span> {member.pullRequests}
+                            </div>
+                            <div>
+                              <span className="font-medium">Active:</span> {member.activeTasks}
+                            </div>
+                            <div>
+                              <span className="font-medium">Done:</span> {member.completedTasks}
+                            </div>
+                          </div>
+                          {member.recentCommits && member.recentCommits.length > 0 && (
+                            <div className="mt-2 pt-2 border-t">
+                              <p className="text-xs font-medium mb-1">Recent Commits:</p>
+                              <div className="space-y-1">
+                                {member.recentCommits.slice(0, 3).map((commit: any, idx: number) => (
+                                  <div key={idx} className="text-xs text-muted-foreground truncate">
+                                    • {commit.message}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          {member.lastActivity && (
+                            <p className="text-xs text-muted-foreground mt-2">
+                              Last synced: {new Date(member.lastActivity).toLocaleDateString()}
+                            </p>
+                          )}
+                          <Progress value={member.burnoutRisk} className="h-2 mt-2" />
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">
+                      No GitHub activity data available. Click \"Sync GitHub\" to fetch data.
+                    </p>
+                  )}
+
+                  {githubStats?.summary && (
+                    <div className="pt-4 border-t">
+                      <h4 className="font-medium mb-2">Summary</h4>
+                      <div className="grid grid-cols-3 gap-2 text-sm">
+                        <div className="text-center p-2 rounded bg-green-50">
+                          <div className="text-green-600 font-bold">{githubStats.summary.lowRisk}</div>
+                          <div className="text-xs text-muted-foreground">Low Risk</div>
+                        </div>
+                        <div className="text-center p-2 rounded bg-yellow-50">
+                          <div className="text-yellow-600 font-bold">{githubStats.summary.mediumRisk}</div>
+                          <div className="text-xs text-muted-foreground">Medium Risk</div>
+                        </div>
+                        <div className="text-center p-2 rounded bg-red-50">
+                          <div className="text-red-600 font-bold">{githubStats.summary.highRisk}</div>
+                          <div className="text-xs text-muted-foreground">High Risk</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           <Card>
             <CardHeader>
               <CardTitle>Project Progress</CardTitle>
@@ -219,11 +382,9 @@ export default function ProjectDetails() {
         </div>
 
         <div className="space-y-6">
-          {githubActivity && <GithubActivityPanel activity={githubActivity} />}
-
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">{" "}
                 <div>
                   <CardTitle>Project Members</CardTitle>
                   <CardDescription>Team members working on this project</CardDescription>

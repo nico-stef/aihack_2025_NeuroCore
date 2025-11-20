@@ -413,3 +413,34 @@ export const invitationsApi = {
     return response.json();
   },
 };
+
+// GitHub API
+export const githubApi = {
+  getProjectStats: async (projectId: string, sync: boolean = false) => {
+    const url = sync 
+      ? `${API_URL}/github/project/${projectId}/stats?sync=true`
+      : `${API_URL}/github/project/${projectId}/stats`;
+    const response = await fetch(url, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch project GitHub stats');
+    return response.json();
+  },
+
+  syncProject: async (projectId: string) => {
+    const response = await fetch(`${API_URL}/github/sync/${projectId}`, {
+      method: 'POST',
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to sync GitHub activity');
+    return response.json();
+  },
+
+  getRepoStats: async (projectId: string) => {
+    const response = await fetch(`${API_URL}/github/repo/${projectId}/stats`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch repository stats');
+    return response.json();
+  },
+};

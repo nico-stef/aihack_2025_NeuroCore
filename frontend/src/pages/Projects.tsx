@@ -48,13 +48,19 @@ export default function Projects() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!user?.id) return;
+      if (!user?.id) {
+        console.log('No user ID available');
+        return;
+      }
 
       try {
+        console.log('Fetching projects for user:', user.id);
         const [projectsData, tasksData] = await Promise.all([
           projectsApi.getUserProjects(user.id),
           tasksApi.getAll()
         ]);
+        console.log('Projects received:', projectsData.length, projectsData);
+        console.log('Tasks received:', tasksData.length);
         setProjects(projectsData);
         setTasks(tasksData);
       } catch (error) {
@@ -166,47 +172,62 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => {
-          const projectTasks = tasks.filter(t => t.projectId === project.id);
-          const completed = projectTasks.filter(t => t.status === "done").length;
-          const progress = projectTasks.length > 0 ? (completed / projectTasks.length) * 100 : 0;
+        {projects.length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <FolderKanban className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-medium mb-2">No projects found</h3>
+            <p className="text-muted-foreground mb-2">
+              {user?.role === 'manager'
+                ? "Create your first project to get started"
+                : "You haven't been assigned to any projects yet"}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              User ID: {user?.id}
+            </p>
+          </div>
+        ) : (
+          projects.map((project) => {
+            const projectTasks = tasks.filter(t => t.projectId === project.id);
+            const completed = projectTasks.filter(t => t.status === "done").length;
+            const progress = projectTasks.length > 0 ? (completed / projectTasks.length) * 100 : 0;
 
-          return (
-            <Link key={project.id} to={`/projects/${project.id}`}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <FolderKanban className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle className="mt-2">{project.name}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="text-muted-foreground">Progress</span>
-                        <span className="font-medium">{progress.toFixed(0)}%</span>
-                      </div>
-                      <Progress value={progress} />
+            return (
+              <Link key={project.id} to={`/projects/${project.id}`}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <FolderKanban className="h-10 w-10 text-primary" />
                     </div>
+                    <CardTitle className="mt-2">{project.name}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex items-center justify-between text-sm mb-1">
+                          <span className="text-muted-foreground">Progress</span>
+                          <span className="font-medium">{progress.toFixed(0)}%</span>
+                        </div>
+                        <Progress value={progress} />
+                      </div>
 
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <CheckSquare className="h-4 w-4" />
-                        <span>{completed}/{projectTasks.length} tasks</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Users className="h-4 w-4" />
-                        <span>{project.members.length} members</span>
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <CheckSquare className="h-4 w-4" />
+                          <span>{completed}/{projectTasks.length} tasks</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Users className="h-4 w-4" />
+                          <span>{project.members.length} members</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          );
-        })}
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })
+        )}
       </div>
     </div>
   );

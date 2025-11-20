@@ -16,9 +16,12 @@ router.get('/user/:userId', async (req, res) => {
         }
 
         // Both managers and developers see only projects where they are members
-        const projects = await Project.find({ members: userId })
+        // Use $in to check if userId exists in members array
+        const projects = await Project.find({ members: { $in: [userId] } })
             .populate('teamId')
             .populate('members', '-password');
+
+        console.log(`Found ${projects.length} projects for user ${userId}`);
 
         res.json(projects.map(project => ({
             id: project._id,
@@ -31,6 +34,7 @@ router.get('/user/:userId', async (req, res) => {
             createdAt: project.createdAt
         })));
     } catch (error) {
+        console.error('Error fetching user projects:', error);
         res.status(500).json({ message: error.message });
     }
 });
