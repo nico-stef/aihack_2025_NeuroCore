@@ -1,14 +1,43 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockTasks, mockBurnoutData } from "@/data/mockData";
+import { mockTasks } from "@/data/mockData";
 import { useAuth } from "@/contexts/AuthContext";
 import { CheckSquare, Clock, AlertTriangle, Activity } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { burnoutApi } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function DashboardUser() {
   const { user } = useAuth();
+  const { toast } = useToast();
+  const [burnoutData, setBurnoutData] = useState<any>(null);
+  const [loadingBurnout, setLoadingBurnout] = useState(true);
+
+  useEffect(() => {
+    const fetchBurnoutScore = async () => {
+      if (!user?.id) return;
+      
+      try {
+        setLoadingBurnout(true);
+        const score = await burnoutApi.getScore(user.id);
+        setBurnoutData(score);
+      } catch (error) {
+        console.error('Error fetching burnout score:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load burnout score",
+          variant: "destructive",
+        });
+      } finally {
+        setLoadingBurnout(false);
+      }
+    };
+
+    fetchBurnoutScore();
+  }, [user?.id]);
   
   const myTasks = mockTasks.filter(t => t.assigneeId === user?.id);
   const completedTasks = myTasks.filter(t => t.status === "done").length;
@@ -89,8 +118,19 @@ export default function DashboardUser() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{mockBurnoutData.score}/100</div>
-            <Progress value={mockBurnoutData.score} className="mt-2" />
+            {loadingBurnout ? (
+              <div className="text-sm text-muted-foreground">Loading...</div>
+            ) : burnoutData ? (
+              <>
+                <div className="text-2xl font-bold">{burnoutData.score}/100</div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Risk: {burnoutData.riskLevel?.toUpperCase() || 'N/A'}
+                </p>
+                <Progress value={burnoutData.score} className="mt-2" />
+              </>
+            ) : (
+              <div className="text-sm text-muted-foreground">No data</div>
+            )}
           </CardContent>
         </Card>
       </div>
