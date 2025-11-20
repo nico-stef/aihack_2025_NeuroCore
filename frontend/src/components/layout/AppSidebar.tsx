@@ -8,6 +8,7 @@ import {
   Settings,
   UsersRound,
   UserCircle,
+  LogOut,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -27,7 +28,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export const AppSidebar = () => {
   const { state } = useSidebar();
   const location = useLocation();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const collapsed = state === "collapsed";
 
   const adminItems = [
@@ -44,7 +45,6 @@ export const AppSidebar = () => {
   ];
 
   const userItems = [
-    { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
     { title: "My Tasks", url: "/my-tasks", icon: CheckSquare },
     { title: "Projects", url: "/projects", icon: FolderKanban },
     { title: "Burnout", url: "/burnout", icon: Activity },
@@ -104,6 +104,15 @@ export const AppSidebar = () => {
                     <UserCircle className={`h-5 w-5 ${collapsed ? "" : "flex-shrink-0"}`} />
                     {!collapsed && <span>Profile</span>}
                   </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={logout}
+                  className={`flex items-center gap-3 cursor-pointer ${collapsed ? "justify-center" : ""}`}
+                >
+                  <LogOut className={`h-5 w-5 ${collapsed ? "" : "flex-shrink-0"}`} />
+                  {!collapsed && <span>Logout</span>}
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
