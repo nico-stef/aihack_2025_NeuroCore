@@ -11,7 +11,6 @@ import Login from "./pages/Login";
 import AcceptInvitation from "./pages/AcceptInvitation";
 import DashboardAdmin from "./pages/DashboardAdmin";
 import DashboardManager from "./pages/DashboardManager";
-import DashboardUser from "./pages/DashboardUser";
 import TeamManagement from "./pages/TeamManagement";
 import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
@@ -70,7 +69,7 @@ const App = () => (
               {/* User routes */}
               <Route path="/dashboard" element={
                 <ProtectedRoute allowedRoles={["developer"]}>
-                  <DashboardUser />
+                  <MyTasks />
                 </ProtectedRoute>
               } />
               <Route path="/my-tasks" element={
@@ -91,7 +90,6 @@ const App = () => (
               {/* <Route path="/settings" element={<Settings />} /> */}
               <Route path="/profile" element={<Profile />} />
 
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
