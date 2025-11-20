@@ -271,6 +271,19 @@ export const teamsApi = {
 
 // Burnout API
 export const burnoutApi = {
+  getScore: async (userId: string, projectId?: string, forceRefresh = false) => {
+    const params = new URLSearchParams();
+    params.append('userId', userId);
+    if (projectId) params.append('projectId', projectId);
+    if (forceRefresh) params.append('forceRefresh', 'true');
+    
+    const response = await fetch(`${API_URL}/burnout?${params}`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch burnout score');
+    return response.json();
+  },
+
   getAll: async (filters?: { userId?: string; week?: number; year?: number }) => {
     const params = new URLSearchParams();
     if (filters?.userId) params.append('userId', filters.userId);
