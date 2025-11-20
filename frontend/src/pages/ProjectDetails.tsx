@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockProjects, mockTasks, mockGitHubActivity } from "@/data/mockData";
+import { projectsApi, tasksApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -8,20 +9,55 @@ import { ArrowLeft, ExternalLink, GitBranch, GitPullRequest, AlertCircle, Users 
 import { GithubActivityPanel } from "@/components/GithubActivityPanel";
 import { TaskList } from "@/components/TaskList";
 import NotFound from "./NotFound";
+import { toast } from "sonner";
+
+// Mock GitHub activity for now
+const mockGitHubActivity: any = {
+  commits: 0,
+  pullRequests: 0,
+  issues: 0,
+  lastCommit: "N/A",
+  recentCommits: []
+};
 
 export default function ProjectDetails() {
   const { id } = useParams();
-  const project = mockProjects.find(p => p.id === id);
+  const [project, setProject] = useState<any>(null);
+  const [projectTasks, setProjectTasks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!id) return;
+      
+      try {
+        const [projectData, tasksData] = await Promise.all([
+          projectsApi.getById(id),
+          tasksApi.getAll({ projectId: id })
+        ]);
+        setProject(projectData);
+        setProjectTasks(tasksData);
+      } catch (error) {
+        toast.error("Failed to load project");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!project) {
     return <NotFound />;
   }
 
-  const projectTasks = mockTasks.filter(t => t.projectId === project.id);
   const completed = projectTasks.filter(t => t.status === "done").length;
   const inProgress = projectTasks.filter(t => t.status === "in-progress").length;
   const progress = projectTasks.length > 0 ? (completed / projectTasks.length) * 100 : 0;
-  const githubActivity = mockGitHubActivity[project.id];
+  const githubActivity = mockGitHubActivity;
 
   return (
     <div className="space-y-6">

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { mockProjects, mockTasks } from "@/data/mockData";
+import { projectsApi, tasksApi } from "@/lib/api";
 import { Plus, FolderKanban, Users, CheckSquare } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
@@ -18,8 +18,25 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  githubUrl: string;
+  members: string[];
+  createdAt: string;
+}
+
+interface Task {
+  id: string;
+  status: string;
+  projectId: string;
+}
+
 export default function Projects() {
-  const [projects, setProjects] = useState(mockProjects);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newProject, setNewProject] = useState({
     name: "",
@@ -28,26 +45,51 @@ export default function Projects() {
     members: "",
   });
 
-  const handleCreateProject = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [projectsData, tasksData] = await Promise.all([
+          projectsApi.getAll(),
+          tasksApi.getAll()
+        ]);
+        setProjects(projectsData);
+        setTasks(tasksData);
+      } catch (error) {
+        toast.error("Failed to load projects");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleCreateProject = async () => {
     if (!newProject.name || !newProject.description) {
       toast.error("Please fill in required fields");
       return;
     }
 
-    const project = {
-      id: `p${projects.length + 1}`,
-      name: newProject.name,
-      description: newProject.description,
-      githubUrl: newProject.githubUrl || "https://github.com/company/project",
-      members: newProject.members.split(",").map(m => m.trim()).filter(Boolean),
-      createdAt: new Date().toISOString().split('T')[0],
-    };
+    try {
+      const projectData = {
+        name: newProject.name,
+        description: newProject.description,
+        githubLink: newProject.githubUrl || "https://github.com/company/project",
+        members: newProject.members.split(",").map(m => m.trim()).filter(Boolean),
+      };
 
-    setProjects([...projects, project]);
-    setNewProject({ name: "", description: "", githubUrl: "", members: "" });
-    setDialogOpen(false);
-    toast.success("Project created successfully");
+      const createdProject = await projectsApi.create(projectData);
+      setProjects([...projects, createdProject]);
+      setNewProject({ name: "", description: "", githubUrl: "", members: "" });
+      setDialogOpen(false);
+      toast.success("Project created successfully");
+    } catch (error) {
+      toast.error("Failed to create project");
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="space-y-6">
@@ -118,7 +160,7 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => {
-          const projectTasks = mockTasks.filter(t => t.projectId === project.id);
+          const projectTasks = tasks.filter(t => t.projectId === project.id);
           const completed = projectTasks.filter(t => t.status === "done").length;
           const progress = projectTasks.length > 0 ? (completed / projectTasks.length) * 100 : 0;
 

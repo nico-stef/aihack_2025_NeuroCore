@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockTasks, mockProjects } from "@/data/mockData";
-import { mockUsers } from "@/contexts/AuthContext";
+import { tasksApi, usersApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { TaskList } from "@/components/TaskList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,23 +10,52 @@ import { CheckSquare, Clock, UserX } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState(mockTasks);
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
   const [newAssignee, setNewAssignee] = useState("");
 
-  const handleReassign = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [tasksData, usersData] = await Promise.all([
+          tasksApi.getAll(),
+          usersApi.getAll()
+        ]);
+        setTasks(tasksData);
+        setUsers(usersData);
+      } catch (error) {
+        toast.error("Failed to load tasks");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleReassign = async () => {
     if (!selectedTask || !newAssignee) {
       toast.error("Please select a task and assignee");
       return;
     }
 
-    setTasks(tasks.map(t => 
-      t.id === selectedTask ? { ...t, assigneeId: newAssignee } : t
-    ));
-    setSelectedTask(null);
-    setNewAssignee("");
-    toast.success("Task reassigned successfully");
+    try {
+      await tasksApi.update(selectedTask, { assignedTo: newAssignee });
+      setTasks(tasks.map(t => 
+        t.id === selectedTask ? { ...t, assigneeId: newAssignee } : t
+      ));
+      setSelectedTask(null);
+      setNewAssignee("");
+      toast.success("Task reassigned successfully");
+    } catch (error) {
+      toast.error("Failed to reassign task");
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const todoTasks = tasks.filter(t => t.status === "todo");
   const inProgressTasks = tasks.filter(t => t.status === "in-progress");
@@ -154,7 +182,7 @@ export default function Tasks() {
                     <SelectValue placeholder="Choose assignee" />
                   </SelectTrigger>
                   <SelectContent>
-                    {mockUsers.filter(u => u.role === "user").map((user) => (
+                    {users.filter(u => u.role === "developer" || u.role === "tester").map((user) => (
                       <SelectItem key={user.id} value={user.id}>
                         {user.name}
                       </SelectItem>

@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { authApi } from "@/lib/api";
 
-export type UserRole = "superadmin" | "manager" | "user";
+export type UserRole = "superadmin" | "manager" | "developer" | "tester";
 
 export interface User {
   id: string;
@@ -9,6 +10,8 @@ export interface User {
   email: string;
   role: UserRole;
   name: string;
+  teamId?: string;
+  githubUsername?: string;
 }
 
 interface AuthContextType {
@@ -21,67 +24,81 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock users
-const mockUsers: User[] = [
-  { id: "1", username: "admin", email: "admin@company.com", role: "superadmin", name: "Admin User" },
-  { id: "2", username: "manager1", email: "manager@company.com", role: "manager", name: "John Manager" },
-  { id: "3", username: "user1", email: "user1@company.com", role: "user", name: "Alice Developer" },
-  { id: "4", username: "user2", email: "user2@company.com", role: "user", name: "Bob Developer" },
-  { id: "5", username: "user3", email: "user3@company.com", role: "user", name: "Carol Developer" },
-];
-
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is stored in localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    // Check if user has token and validate it
+    const token = localStorage.getItem("token");
+    if (token) {
+      authApi.getCurrentUser()
+        .then((userData) => {
+          setUser(userData);
+        })
+        .catch(() => {
+          // Token is invalid, clear it
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
   }, []);
 
   const login = async (username: string, password: string) => {
-    // Mock login - just check if username exists
-    const foundUser = mockUsers.find((u) => u.username === username);
-    if (foundUser && password === "password") {
-      setUser(foundUser);
-      localStorage.setItem("user", JSON.stringify(foundUser));
+    try {
+      const response = await authApi.login(username, password);
+      const userData = response.user;
+      
+      // Store token and user data
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
       
       // Navigate based on role
-      if (foundUser.role === "superadmin") {
+      if (userData.role === "superadmin") {
         navigate("/admin");
-      } else if (foundUser.role === "manager") {
+      } else if (userData.role === "manager") {
         navigate("/manager");
       } else {
         navigate("/dashboard");
       }
-    } else {
+    } catch (error) {
       throw new Error("Invalid credentials");
     }
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/login");
   };
 
   const register = async (username: string, email: string, password: string, name: string) => {
-    // Mock register
-    const newUser: User = {
-      id: String(mockUsers.length + 1),
-      username,
-      email,
-      role: "user",
-      name,
-    };
-    mockUsers.push(newUser);
-    setUser(newUser);
-    localStorage.setItem("user", JSON.stringify(newUser));
-    navigate("/dashboard");
+    try {
+      const response = await authApi.register(name, username, email, password);
+      const userData = response.user;
+      
+      // Store token and user data
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
+      
+      navigate("/dashboard");
+    } catch (error) {
+      throw new Error("Registration failed");
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, logout, register, isAuthenticated: !!user }}>
@@ -97,5 +114,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-export { mockUsers };

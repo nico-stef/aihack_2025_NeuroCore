@@ -1,31 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { mockUsers } from "@/contexts/AuthContext";
+import { usersApi } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Users, Shield, UserCog } from "lucide-react";
 import { toast } from "sonner";
 
 export default function DashboardAdmin() {
-  const [users, setUsers] = useState(mockUsers);
+  const [users, setUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingUserId, setEditingUserId] = useState<string | null>(null);
   const [newRole, setNewRole] = useState("");
 
-  const handleRoleChange = (userId: string) => {
-    if (!newRole || !["superadmin", "manager", "user"].includes(newRole)) {
-      toast.error("Invalid role. Use: superadmin, manager, or user");
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const usersData = await usersApi.getAll();
+        setUsers(usersData);
+      } catch (error) {
+        toast.error("Failed to load users");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  const handleRoleChange = async (userId: string) => {
+    if (!newRole || !["superadmin", "manager", "developer", "tester"].includes(newRole)) {
+      toast.error("Invalid role. Use: superadmin, manager, developer, or tester");
       return;
     }
 
-    setUsers(users.map(u => 
-      u.id === userId ? { ...u, role: newRole as any } : u
-    ));
-    setEditingUserId(null);
-    setNewRole("");
-    toast.success("Role updated successfully");
+    try {
+      await usersApi.update(userId, { role: newRole });
+      setUsers(users.map(u => 
+        u.id === userId ? { ...u, role: newRole as any } : u
+      ));
+      setEditingUserId(null);
+      setNewRole("");
+      toast.success("Role updated successfully");
+    } catch (error) {
+      toast.error("Failed to update role");
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const getRoleBadgeVariant = (role: string) => {
     switch (role) {

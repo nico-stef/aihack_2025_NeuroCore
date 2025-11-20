@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { mockUsers } from "@/contexts/AuthContext";
+import { usersApi, authApi, teamsApi } from "@/lib/api";
 import { UserCard } from "@/components/UserCard";
 import { Plus, Users } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Dialog,
   DialogContent,
@@ -17,40 +18,97 @@ import {
 } from "@/components/ui/dialog";
 
 export default function TeamManagement() {
-  const [teamMembers, setTeamMembers] = useState(mockUsers.filter(u => u.role !== "superadmin"));
+  const { user } = useAuth();
+  const [teamMembers, setTeamMembers] = useState<any[]>([]);
+  const [teams, setTeams] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [newUsername, setNewUsername] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newName, setNewName] = useState("");
   const [newRole, setNewRole] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleAddMember = () => {
-    if (!newUsername || !newRole) {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [usersData, teamsData] = await Promise.all([
+          usersApi.getAll(),
+          teamsApi.getAll()
+        ]);
+        setTeamMembers(usersData.filter((u: any) => u.role !== "superadmin"));
+        setTeams(teamsData);
+      } catch (error) {
+        toast.error("Failed to load team members");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleAddMember = async () => {
+    if (!newUsername || !newEmail || !newName || !newRole) {
       toast.error("Please fill in all fields");
       return;
     }
 
-    if (!["manager", "user"].includes(newRole)) {
-      toast.error("Role must be 'manager' or 'user'");
+    if (!["manager", "developer", "tester"].includes(newRole)) {
+      toast.error("Role must be 'manager', 'developer', or 'tester'");
       return;
     }
 
-    const newMember = {
-      id: String(teamMembers.length + 10),
-      username: newUsername,
-      email: `${newUsername}@company.com`,
-      role: newRole as any,
-      name: newUsername.charAt(0).toUpperCase() + newUsername.slice(1),
-    };
-
-    setTeamMembers([...teamMembers, newMember]);
-    setNewUsername("");
-    setNewRole("");
-    setDialogOpen(false);
-    toast.success("Team member added successfully");
+    try {
+      const response = await authApi.register(newName, newUsername, newEmail, "password123", newRole);
+      const newMember = response.user;
+      setTeamMembers([...teamMembers, newMember]);
+      setNewUsername("");
+      setNewEmail("");
+      setNewName("");
+      setNewRole("");
+      setDialogOpen(false);
+      toast.success("Team member added successfully");
+    } catch (error) {
+      toast.error("Failed to add team member");
+    }
   };
 
-  const handleRemoveMember = (id: string) => {
-    setTeamMembers(teamMembers.filter(m => m.id !== id));
-    toast.success("Team member removed");
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const handleRemoveMember = async (userId: string) => {
+    try {
+      // Find the team that contains this user
+      const userTeam = teams.find(team => 
+        team.members.some((member: any) => member.id === userId || member._id === userId)
+      );
+
+      if (!userTeam) {
+        toast.error("User is not part of any team");
+        return;
+      }
+
+      // Remove member from team
+      await teamsApi.removeMember(userTeam.id, userId);
+      
+      // Update local state
+      setTeamMembers(teamMembers.filter(m => m.id !== userId));
+      
+      // Update teams state
+      setTeams(teams.map(team => {
+        if (team.id === userTeam.id) {
+          return {
+            ...team,
+            members: team.members.filter((m: any) => m.id !== userId && m._id !== userId)
+          };
+        }
+        return team;
+      }));
+      
+      toast.success("Team member removed from team");
+    } catch (error) {
+      toast.error("Failed to remove member from team");
+    }
   };
 
   return (
@@ -86,10 +144,29 @@ export default function TeamManagement() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="role">Role (manager or user)</Label>
+                <Label htmlFor="name">Full Name</Label>
+                <Input
+                  id="name"
+                  placeholder="John Doe"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="john@company.com"
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="role">Role (manager, developer, or tester)</Label>
                 <Input
                   id="role"
-                  placeholder="user"
+                  placeholder="developer"
                   value={newRole}
                   onChange={(e) => setNewRole(e.target.value)}
                 />

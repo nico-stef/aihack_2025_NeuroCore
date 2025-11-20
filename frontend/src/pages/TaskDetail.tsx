@@ -1,25 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockTasks, mockProjects } from "@/data/mockData";
-import { mockUsers } from "@/contexts/AuthContext";
+import { tasksApi } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import { TaskChatBox } from "@/components/TaskChatBox";
 import NotFound from "./NotFound";
+import { toast } from "sonner";
 
 export default function TaskDetail() {
   const { id } = useParams();
-  const task = mockTasks.find(t => t.id === id);
+  const [task, setTask] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTask = async () => {
+      if (!id) return;
+      
+      try {
+        const taskData = await tasksApi.getById(id);
+        setTask(taskData);
+      } catch (error) {
+        toast.error("Failed to load task");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTask();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!task) {
     return <NotFound />;
   }
 
-  const project = mockProjects.find(p => p.id === task.projectId);
-  const assignee = mockUsers.find(u => u.id === task.assigneeId);
+  const project = task.project;
+  const assignee = task.assignee;
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {

@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { mockTasks, mockProjects } from "@/data/mockData";
-import { mockUsers } from "@/contexts/AuthContext";
+import { tasksApi, projectsApi, usersApi } from "@/lib/api";
 import { WorkloadChart } from "@/components/WorkloadChart";
 import { BarChart3, TrendingUp, AlertCircle, Users } from "lucide-react";
+import { toast } from "sonner";
 import {
   BarChart,
   Bar,
@@ -18,13 +19,42 @@ import {
 } from "recharts";
 
 export default function Insights() {
-  const overdueTasks = mockTasks.filter(t => new Date(t.dueDate) < new Date() && t.status !== "done");
-  const completionRate = (mockTasks.filter(t => t.status === "done").length / mockTasks.length) * 100;
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [tasksData, projectsData, usersData] = await Promise.all([
+          tasksApi.getAll(),
+          projectsApi.getAll(),
+          usersApi.getAll()
+        ]);
+        setTasks(tasksData);
+        setProjects(projectsData);
+        setUsers(usersData);
+      } catch (error) {
+        toast.error("Failed to load data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const overdueTasks = tasks.filter(t => new Date(t.dueDate) < new Date() && t.status !== "done");
+  const completionRate = tasks.length > 0 ? (tasks.filter(t => t.status === "done").length / tasks.length) * 100 : 0;
 
   // Workload by user
-  const users = mockUsers.filter(u => u.role === "user");
-  const workloadData = users.map(user => {
-    const userTasks = mockTasks.filter(t => t.assigneeId === user.id);
+  const developers = users.filter(u => u.role === "developer" || u.role === "tester");
+  const workloadData = developers.map(user => {
+    const userTasks = tasks.filter(t => t.assigneeId === user.id);
     const totalHours = userTasks.reduce((sum, t) => sum + t.actualHours, 0);
     return {
       name: user.name.split(' ')[0],
@@ -35,15 +65,15 @@ export default function Insights() {
 
   // Task status distribution
   const statusData = [
-    { name: "To Do", value: mockTasks.filter(t => t.status === "todo").length, color: "hsl(var(--muted))" },
-    { name: "In Progress", value: mockTasks.filter(t => t.status === "in-progress").length, color: "hsl(var(--primary))" },
-    { name: "Review", value: mockTasks.filter(t => t.status === "review").length, color: "hsl(var(--warning))" },
-    { name: "Done", value: mockTasks.filter(t => t.status === "done").length, color: "hsl(var(--success))" },
+    { name: "To Do", value: tasks.filter(t => t.status === "todo").length, color: "hsl(var(--muted))" },
+    { name: "In Progress", value: tasks.filter(t => t.status === "in-progress").length, color: "hsl(var(--primary))" },
+    { name: "Review", value: tasks.filter(t => t.status === "review").length, color: "hsl(var(--warning))" },
+    { name: "Done", value: tasks.filter(t => t.status === "done").length, color: "hsl(var(--success))" },
   ];
 
   // Project completion
-  const projectData = mockProjects.map(project => {
-    const projectTasks = mockTasks.filter(t => t.projectId === project.id);
+  const projectData = projects.map(project => {
+    const projectTasks = tasks.filter(t => t.projectId === project.id);
     const completed = projectTasks.filter(t => t.status === "done").length;
     const total = projectTasks.length;
     return {
