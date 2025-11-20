@@ -14,6 +14,7 @@ import teamRoutes from "./routes/teams.js";
 import burnoutRoutes from "./routes/burnout.js";
 import insightRoutes from "./routes/insights.js";
 import invitationRoutes from "./routes/invitations.js";
+import aiCoachRoutes from "./routes/aiCoach.js";
 
 const app = express();
 const PORT = 3000;
@@ -35,6 +36,7 @@ app.use("/api/teams", teamRoutes);
 app.use("/api/burnout", burnoutRoutes);
 app.use("/api/insights", insightRoutes);
 app.use("/api/invitations", invitationRoutes);
+app.use("/api/ai-coach", aiCoachRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

@@ -413,3 +413,35 @@ export const invitationsApi = {
     return response.json();
   },
 };
+
+// AI Coach API
+export const aiCoachApi = {
+  chat: async (taskId: string, message: string, conversationHistory: any[]) => {
+    const response = await fetch(`${API_URL}/ai-coach/chat`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ taskId, message, conversationHistory }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to get AI response');
+    }
+    return response.json();
+  },
+
+  getHistory: async (taskId: string) => {
+    const response = await fetch(`${API_URL}/ai-coach/history/${taskId}`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch conversation history');
+    return response.json();
+  },
+
+  getAvailableModels: async () => {
+    const response = await fetch(`${API_URL}/ai-coach/models`, {
+      headers: getHeaders(),
+    });
+    if (!response.ok) throw new Error('Failed to fetch available models');
+    return response.json();
+  },
+};
