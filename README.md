@@ -77,7 +77,7 @@ GEMINI_API_KEY=            # Cheia API pentru Google Gemini
 
 Pornește serverul:
 ```bash
-npm run dev
+node server.js
 ```
 
 Backend va rula pe `http://localhost:3000`
