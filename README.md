@@ -1,6 +1,12 @@
-# NeuroCore - AI-Powered Team Management System
+# Proiect Hackathon GenAI
 
-Un sistem inteligent de management al echipelor și proiectelor cu funcții de detectare burnout și coaching AI.
+**Acest proiect a fost realizat în cadrul unui hackathon GenAI de o zi, de o echipă formată din 2 persoane.**
+
+---
+
+# AI-Powered Team Management System
+
+Un sistem inteligent de management al echipelor și proiectelor, care, cu ajutorul AI-ului, detectează semnele de burnout și alertează automat team leader-ul. Aplicația oferă și funcții de coaching AI, ajutând dezvoltatorii să își organizeze inteligent task-urile și să primească sfaturi sau sugestii de cod personalizate.
 
 ## 🚀 Funcționalități Principale
 
@@ -53,8 +59,20 @@ npm install
 
 Creează fișierul `.env`:
 ```env
-dbURI='mongodb+srv://your-connection-string'
-JWT_SECRET='your-secret-key'
+DB_URI=                    # Stringul de conectare la baza de date MongoDB 
+JWT_SECRET=                # Cheia folosită pentru generarea și validarea token-urilor JWT
+BUCKET_NAME=               # Numele bucket-ului bazei de date
+BUCKET_REGION=             # Regiunea bucket-ului
+BUCKET_ACCESS_KEY=         # Access key pentru bucket
+BUCKET_SECRET_ACCESS_KEY=  # Secret access key pentru bucket
+
+SENDGRID_API_KEY=          # Cheia API pentru SendGrid
+SENDGRID_FROM_EMAIL=       # Emailul expeditor folosit la trimiterea mesajelor
+
+FRONTEND_URL=http://172.30.176.1:8080/   # URL-ul frontendului (folosit pentru redirecționări, email-uri etc.)
+
+GEMINI_API_KEY=            # Cheia API pentru Google Gemini
+
 ```
 
 Populează baza de date cu date de test:
@@ -88,6 +106,11 @@ npm run dev
 
 Frontend va rula pe `http://localhost:8080`
 
+### 4. Baza de date
+
+Structura bazei de date pentru acest proiect este inclusă în directorul **database structure** in **format JSON**, fiecare fișier reprezentând o colecție MongoDB.  
+Aceste fișiere pot fi folosite pentru a importa rapid datele într-o instanță MongoDB.  
+
 ## 👥 Credențiale de Test
 
 După rularea `npm run seed`, vei avea următorii utilizatori:
@@ -97,154 +120,4 @@ După rularea `npm run seed`, vei avea următorii utilizatori:
 | Super Admin | `admin` | `password` | Acces complet la sistem |
 | Manager | `manager1` | `password` | Gestionare echipe și proiecte |
 | Developer | `alice` | `password` | Developer cu acces la task-uri |
-| Developer | `bob` | `password` | Developer cu acces la task-uri |
-| Tester | `carol` | `password` | Tester cu acces la task-uri |
 
-## 📁 Structura Proiectului
-
-```
-aihack_2025_NeuroCore/
-├── backend/
-│   ├── models/          # Mongoose schemas
-│   ├── routes/          # API endpoints
-│   ├── server.js        # Express server
-│   ├── seed.js          # Database seeder
-│   └── connectionDb.js  # MongoDB connection
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/  # React components
-│   │   ├── pages/       # Page components
-│   │   ├── contexts/    # React contexts
-│   │   ├── lib/         # Utilities & API
-│   │   └── hooks/       # Custom hooks
-│   └── public/
-│
-└── INTEGRATION.md       # Documentație integrare
-```
-
-## 🔌 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Înregistrare utilizator
-- `POST /api/auth/login` - Autentificare
-- `GET /api/auth/me` - Utilizator curent
-
-### Users
-- `GET /api/users` - Lista utilizatori
-- `GET /api/users/:id` - Detalii utilizator
-- `PUT /api/users/:id` - Actualizare utilizator
-- `DELETE /api/users/:id` - Ștergere utilizator
-
-### Projects
-- `GET /api/projects` - Lista proiecte
-- `POST /api/projects` - Creare proiect
-- `GET /api/projects/:id` - Detalii proiect
-- `PUT /api/projects/:id` - Actualizare proiect
-- `DELETE /api/projects/:id` - Ștergere proiect
-
-### Tasks
-- `GET /api/tasks` - Lista task-uri
-- `POST /api/tasks` - Creare task
-- `GET /api/tasks/:id` - Detalii task
-- `PUT /api/tasks/:id` - Actualizare task
-- `DELETE /api/tasks/:id` - Ștergere task
-
-### Teams
-- `GET /api/teams` - Lista echipe
-- `POST /api/teams` - Creare echipă
-- `GET /api/teams/:id` - Detalii echipă
-- `PUT /api/teams/:id` - Actualizare echipă
-- `DELETE /api/teams/:id` - Ștergere echipă
-
-### Burnout
-- `GET /api/burnout` - Scoruri burnout
-- `POST /api/burnout` - Creare scor burnout
-- `GET /api/burnout/:id` - Detalii scor
-- `PUT /api/burnout/:id` - Actualizare scor
-- `DELETE /api/burnout/:id` - Ștergere scor
-
-### Insights
-- `GET /api/insights` - Lista insights
-- `POST /api/insights` - Creare insight
-- `GET /api/insights/:id` - Detalii insight
-- `PUT /api/insights/:id` - Actualizare insight
-- `DELETE /api/insights/:id` - Ștergere insight
-
-## 🗄️ Modele de Date
-
-### User
-```javascript
-{
-  name: String,
-  username: String (unique),
-  email: String (unique),
-  password: String (hashed),
-  role: ['superadmin', 'manager', 'developer', 'tester'],
-  teamId: ObjectId,
-  githubUsername: String,
-  githubToken: String
-}
-```
-
-### Project
-```javascript
-{
-  name: String,
-  description: String,
-  githubLink: String,
-  teamId: ObjectId,
-  members: [ObjectId],
-  status: ['active', 'archived']
-}
-```
-
-### Task
-```javascript
-{
-  projectId: ObjectId,
-  title: String,
-  description: String,
-  assignedTo: ObjectId,
-  createdBy: ObjectId,
-  status: ['to-do', 'in-progress', 'done'],
-  priority: ['low', 'medium', 'high'],
-  estimateHours: Number,
-  realHours: Number,
-  dueDate: Date
-}
-```
-
-## 🔒 Securitate
-
-- Toate parolele sunt hash-uite folosind bcrypt
-- Autentificare JWT cu token expirabil
-- CORS configurat pentru securitate
-- Validare date pe backend
-- Protected routes în frontend
-
-## 📝 Dezvoltare Viitoare
-
-- [ ] Integrare completă GitHub API
-- [ ] Implementare AI Coach cu GPT
-- [ ] Dashboard-uri personalizate
-- [ ] Notificări real-time
-- [ ] Export rapoarte PDF
-- [ ] Mobile app
-- [ ] Dark mode
-
-## 🤝 Contribuții
-
-Contribuțiile sunt binevenite! Pentru schimbări majore, deschide mai întâi un issue pentru a discuta ce ai dori să schimbi.
-
-## 📄 Licență
-
-[MIT](LICENSE)
-
-## 👨‍💻 Echipa
-
-Dezvoltat pentru GenAI Hackaton - 3Pillar 2025 by NeuroCore Team
-
----
-
-Pentru mai multe detalii despre integrarea backend-frontend, vezi [INTEGRATION.md](INTEGRATION.md)
