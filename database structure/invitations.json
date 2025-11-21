@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "691eeed403ad0d295af79729"
+  },
+  "email": "cosminatunea7@gmail.com",
+  "role": "developer",
+  "teamId": {
+    "$oid": "691ee10758da7152f48e4dc7"
+  },
+  "invitedBy": {
+    "$oid": "691ee10758da7152f48e4dbf"
+  },
+  "token": "baa46c2f4d2e643b029fd771bd5759dca4f5a4cff97768cd9c1ee00904902fbb",
+  "status": "accepted",
+  "expiresAt": {
+    "$date": "2025-11-27T10:35:00.567Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-20T10:35:00.573Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T10:38:41.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691eef3e03ad0d295af79740"
+  },
+  "email": "cosminatunea23@gmail.com",
+  "role": "developer",
+  "teamId": {
+    "$oid": "691ee10758da7152f48e4dc7"
+  },
+  "invitedBy": {
+    "$oid": "691ee10758da7152f48e4dbf"
+  },
+  "token": "38497defcf2c35f5c696121d4bd7c5132286aab90b0a6a0935d5f78895ef3c0a",
+  "status": "pending",
+  "expiresAt": {
+    "$date": "2025-11-27T10:36:46.190Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-20T10:36:46.192Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T10:36:46.192Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691ef09546fd4c23d95f4df4"
+  },
+  "email": "nico.stefanica12@gmail.com",
+  "role": "developer",
+  "teamId": {
+    "$oid": "691ee10758da7152f48e4dc7"
+  },
+  "invitedBy": {
+    "$oid": "691ee10758da7152f48e4dbf"
+  },
+  "token": "1b34e9e2570c518588cc0fe090a10b4fdc827b7257cff5c9a34b0af3ae301a09",
+  "status": "pending",
+  "expiresAt": {
+    "$date": "2025-11-27T10:42:29.268Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-20T10:42:29.271Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T10:42:29.271Z"
+  },
+  "__v": 0
+}]

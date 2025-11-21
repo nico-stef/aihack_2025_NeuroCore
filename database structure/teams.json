@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "691ef50f873ec4ee53b3c10e"
+  },
+  "name": "Development Team",
+  "managerId": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "members": [
+    {
+      "$oid": "691ef50e873ec4ee53b3c108"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10a"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-11-20T11:01:35.064Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T11:01:35.064Z"
+  },
+  "__v": 0
+}]

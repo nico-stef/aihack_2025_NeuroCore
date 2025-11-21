@@ -1,0 +1,939 @@
+[{
+  "_id": {
+    "$oid": "691f0cf539b60180528618ac"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Setup project structure",
+  "description": "Initialize project with proper folder structure and dependencies.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 4,
+  "realHours": 4.5,
+  "startedAt": {
+    "$date": "2025-09-15T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-09-15T12:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-09-14T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618ad"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Write API documentation",
+  "description": "Document all backend endpoints for manager and developer workflows.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "low",
+  "estimateHours": 3,
+  "realHours": 3.2,
+  "startedAt": {
+    "$date": "2025-09-20T09:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-09-20T12:15:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-09-18T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618ae"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement user authentication",
+  "description": "Add JWT-based authentication with login and registration.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 6,
+  "realHours": 9.5,
+  "startedAt": {
+    "$date": "2025-10-05T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-10-05T17:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-10-03T11:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618af"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Create reusable button component library",
+  "description": "Develop a reusable button style system with loading states and variants.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 3,
+  "realHours": 5.5,
+  "startedAt": {
+    "$date": "2025-10-12T10:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-10-12T15:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-10-10T09:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b0"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Fix critical login bug",
+  "description": "Users cannot log in with special characters in password.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 2,
+  "realHours": 4.3,
+  "startedAt": {
+    "$date": "2025-11-05T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-05T12:20:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-04T16:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b1"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Update user profile UI",
+  "description": "Redesign profile page with new brand guidelines.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 4,
+  "realHours": 6.8,
+  "startedAt": {
+    "$date": "2025-11-05T13:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-05T19:48:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-04T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b2"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement search feature",
+  "description": "Add search functionality for tasks and projects with filters.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 5,
+  "realHours": 8.2,
+  "startedAt": {
+    "$date": "2025-11-05T20:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-06T04:12:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-03T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b3"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Fix UI bugs on dashboard",
+  "description": "Resolve layout inconsistencies and alignment issues on smaller screens.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 3,
+  "realHours": 5.7,
+  "startedAt": {
+    "$date": "2025-11-10T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-10T13:42:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-08T11:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b4"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Optimize database queries",
+  "description": "Improve performance of slow API endpoints.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 4,
+  "realHours": 7.5,
+  "startedAt": {
+    "$date": "2025-11-10T14:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-10T21:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-09T09:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b5"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Build analytics chart system",
+  "description": "Implement chart visualizations for productivity and workload using Recharts.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 6,
+  "realHours": 18.3,
+  "startedAt": {
+    "$date": "2025-11-15T07:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-16T01:20:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-12T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.837Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b6"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Refactor sidebar navigation system",
+  "description": "Rewrite navigation logic and improve accessibility.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 8,
+  "startedAt": {
+    "$date": "2025-11-18T08:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-16T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:52:12.441Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-20T13:52:12.436Z"
+  },
+  "realHours": 53.9
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b7"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Write unit tests for auth module",
+  "description": "Add comprehensive test coverage for authentication endpoints.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "medium",
+  "estimateHours": 5,
+  "createdAt": {
+    "$date": "2025-11-17T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T12:43:33.838Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f0cf539b60180528618b8"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Deploy to production",
+  "description": "Deploy latest changes to production environment.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 3,
+  "createdAt": {
+    "$date": "2025-11-19T15:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:58:38.250Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-20T13:58:38.222Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf3c"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Setup project structure",
+  "description": "Initialize project with proper folder structure and dependencies.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 4,
+  "realHours": 4.5,
+  "startedAt": {
+    "$date": "2025-09-15T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-09-15T12:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-09-14T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.175Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf3d"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Write API documentation",
+  "description": "Document all backend endpoints for manager and developer workflows.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "low",
+  "estimateHours": 3,
+  "realHours": 3.2,
+  "startedAt": {
+    "$date": "2025-09-20T09:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-09-20T12:15:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-09-18T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf3e"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement user authentication",
+  "description": "Add JWT-based authentication with login and registration.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 6,
+  "realHours": 9.5,
+  "startedAt": {
+    "$date": "2025-10-05T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-10-05T17:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-10-03T11:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf3f"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Create reusable button component library",
+  "description": "Develop a reusable button style system with loading states and variants.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 3,
+  "realHours": 5.5,
+  "startedAt": {
+    "$date": "2025-10-12T10:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-10-12T15:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-10-10T09:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf40"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Fix critical login bug",
+  "description": "Users cannot log in with special characters in password.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 2,
+  "realHours": 4.3,
+  "startedAt": {
+    "$date": "2025-11-05T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-05T12:20:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-04T16:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf41"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Update user profile UI",
+  "description": "Redesign profile page with new brand guidelines.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 4,
+  "realHours": 6.8,
+  "startedAt": {
+    "$date": "2025-11-05T13:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-05T19:48:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-04T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf42"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement search feature",
+  "description": "Add search functionality for tasks and projects with filters.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "medium",
+  "estimateHours": 5,
+  "realHours": 8.2,
+  "startedAt": {
+    "$date": "2025-11-05T20:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-06T04:12:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-03T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf43"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Fix UI bugs on dashboard",
+  "description": "Resolve layout inconsistencies and alignment issues on smaller screens.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 3,
+  "realHours": 5.7,
+  "startedAt": {
+    "$date": "2025-11-10T08:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-10T13:42:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-08T11:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf44"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Optimize database queries",
+  "description": "Improve performance of slow API endpoints.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 4,
+  "realHours": 7.5,
+  "startedAt": {
+    "$date": "2025-11-10T14:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-10T21:30:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-09T09:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf45"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Build analytics chart system",
+  "description": "Implement chart visualizations for productivity and workload using Recharts.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "done",
+  "priority": "high",
+  "estimateHours": 6,
+  "realHours": 18.3,
+  "startedAt": {
+    "$date": "2025-11-15T07:00:00.000Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-16T01:20:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-12T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf46"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Refactor sidebar navigation system",
+  "description": "Rewrite navigation logic and improve accessibility.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "in-progress",
+  "priority": "high",
+  "estimateHours": 8,
+  "startedAt": {
+    "$date": "2025-11-18T08:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-16T14:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf47"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Write unit tests for auth module",
+  "description": "Add comprehensive test coverage for authentication endpoints.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "in-progress",
+  "priority": "medium",
+  "estimateHours": 5,
+  "createdAt": {
+    "$date": "2025-11-17T10:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:58:15.645Z"
+  },
+  "completedAt": {
+    "$date": "2025-11-20T13:58:05.411Z"
+  },
+  "startedAt": {
+    "$date": "2025-11-20T13:58:15.645Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f130ec0fa28d2220adf48"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Deploy to production",
+  "description": "Deploy latest changes to production environment.",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "high",
+  "estimateHours": 3,
+  "createdAt": {
+    "$date": "2025-11-19T15:00:00.000Z"
+  },
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2025-11-20T13:09:34.176Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "691f25941fd6013a00e55e86"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement Logout+Delete account",
+  "description": " Logout+Delete account",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "medium",
+  "estimateHours": 2,
+  "createdAt": {
+    "$date": "2025-11-20T14:28:36.331Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:28:36.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f262b1fd6013a00e55eaf"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Make some modifications in app ",
+  "description": "",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "medium",
+  "estimateHours": 1,
+  "createdAt": {
+    "$date": "2025-11-20T14:31:07.238Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:31:07.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f26a8edb16a3a65802aff"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Implement Login and Remove Register",
+  "description": "",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "medium",
+  "estimateHours": 1,
+  "createdAt": {
+    "$date": "2025-11-20T14:33:12.854Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:33:12.854Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f2aa4edb16a3a65802bef"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "title": "Add Users management for admin",
+  "description": "",
+  "assignedTo": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "createdBy": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "status": "to-do",
+  "priority": "medium",
+  "estimateHours": 2,
+  "createdAt": {
+    "$date": "2025-11-20T14:50:12.905Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:50:12.905Z"
+  },
+  "__v": 0
+}]

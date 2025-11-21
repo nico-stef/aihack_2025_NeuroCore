@@ -1,0 +1,574 @@
+[{
+  "_id": {
+    "$oid": "691f06fed0244b188f723fe6"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 95,
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 3,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 3
+  },
+  "analysis": "Alice shows extremely low activity across both GitHub and task management systems for a developer. Her commit history for the last 30 days consists solely of merging pull requests initiated by another user ('nico-stef'), indicating no direct code contributions. Coupled with zero tasks in progress, completed, or overdue, and zero total tasks, this strongly suggests a significant state of disengagement, being blocked, or a complete lack of assigned work. This situation is a high risk factor for burnout stemming from lack of purpose, chronic underutilization, or feeling disconnected from active development.",
+  "recommendations": [
+    "Urgently conduct a workload assessment and engagement check with Alice to understand her current projects, challenges, and overall well-being.",
+    "Ensure Alice has clear, meaningful tasks assigned within the tracked system that align with her developer role and contribute to team goals.",
+    "Schedule a one-on-one discussion with Alice to address any potential blockers, clarify expectations, and identify opportunities for re-engagement or professional development."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T12:18:06.640Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T12:18:06.640Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f0790d0244b188f72400e"
+  },
+  "userId": {
+    "$oid": "674b8c3e4a1234567890ab01"
+  },
+  "score": 85,
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "The complete absence of activity across all tracked metrics (commits, tasks, PRs) is a critical indicator of potential burnout, specifically manifesting as severe disengagement or withdrawal. While this could also indicate time off or a change in roles, in an active context it represents the highest level of risk for disengagement-related burnout. The data points not to overwork, but to a potential cessation of productive output.",
+  "recommendations": [
+    "Initiate a private and supportive check-in immediately to understand the developer's current status and well-being. This could be due to personal reasons, health issues, or vacation.",
+    "Verify that the data sources are accurate and that the developer is expected to be active. Check for potential access issues or a recent change in project assignment.",
+    "If the developer is confirmed to be active but disengaged, a discussion about their workload, role satisfaction, and career goals is necessary to identify and address the root cause."
+  ],
+  "modelUsed": "gemini-2.5-pro",
+  "createdAt": {
+    "$date": "2025-11-20T12:20:32.874Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T12:20:32.874Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f07c0f2da862ea6a66cb3"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 70,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 3,
+    "tasksInProgress": 2,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 3
+  },
+  "analysis": "Alice exhibits very low development activity, with only 3 commits in the last 30 days. Critically, all these commits are merge requests from 'nico-stef', suggesting Alice herself has made no direct code contributions or is primarily in a coordination/review role with no personal development tasks. She has 2 tasks in progress but has completed 0, indicating a significant lack of progress or potential blocking. While there are no overdue tasks, the combination of extremely low personal commit frequency, zero completed tasks, and a small total task count points strongly towards disengagement, being blocked, or an insufficient workload that could lead to 'boreout' – a form of burnout stemming from a lack of meaningful work, challenge, or purpose. This pattern is highly concerning for productivity and employee well-being.",
+  "recommendations": [
+    "Investigate Workload & Role Clarity: Conduct a conversation with Alice to understand her current responsibilities, workload, and if her role is intended to be purely integration/review, or if direct development is expected. Clarify expectations and align on her primary contributions.",
+    "Check for Blocking Issues: Proactively identify any technical, interpersonal, or motivational blockers preventing Alice from completing tasks or making direct code contributions. Offer support to resolve these issues.",
+    "Re-engage & Reassign Tasks: If disengagement is a factor, assign more challenging or engaging tasks that align with her interests and skills. Consider opportunities for training or new project involvement to rekindle interest and provide a sense of purpose.",
+    "Set Clear Goals & Deadlines: Establish clear, achievable goals and realistic deadlines for her current and future tasks. This can help foster a sense of progress, accountability, and direction.",
+    "Consider Pair Programming/Mentorship: If Alice is struggling with technical hurdles or needs guidance, pair her with a peer or assign a mentor to provide direct support and help her overcome challenges."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T12:21:20.298Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T12:21:20.298Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f107a0e2b76b8098e931d"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10a"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Bob Developer exhibits a complete and absolute absence of activity across all tracked metrics (commits, pull requests, issues, and tasks) for the past 30 days. This extreme lack of engagement is a critical red flag, strongly indicating either severe disengagement due to burnout, a prolonged leave of absence, or a potential departure from the role. The complete zero activity suggests a critical situation requiring immediate investigation and support.",
+  "recommendations": [
+    "Conduct an immediate and empathetic check-in with Bob Developer to understand his current status, well-being, and any underlying reasons for the complete lack of activity.",
+    "Verify if Bob Developer is on a planned leave of absence (e.g., vacation, sick leave, sabbatical) that is not reflected in these operational data sources.",
+    "If burnout or disengagement is confirmed, provide immediate access to mental health resources, consider a temporary reduced workload, or recommend a period of enforced rest and recovery.",
+    "Investigate the assignment and availability of tasks. If Bob is expected to be working, determine if there are any organizational or technical blockers preventing him from engaging with work.",
+    "Review Bob's current role, responsibilities, and project alignment to ensure job satisfaction and address any potential contributing factors to disengagement."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T12:58:34.637Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T12:58:34.637Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f10850e2b76b8098e9323"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10c"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "The complete absence of any recorded activity (0 commits, 0 pull requests, 0 issues, 0 tasks in progress, 0 completed tasks) over the last 30 days is an extremely critical indicator. While this could potentially be due to an approved leave of absence or a role transition not reflected in these metrics, from a purely data-driven perspective, it strongly suggests severe disengagement, complete emotional exhaustion, or a critical block. This pattern is highly indicative of advanced stages of burnout where an individual completely withdraws from work-related output.",
+  "recommendations": [
+    "Immediate and empathetic outreach by a manager or team lead is crucial to understand the underlying reasons for the complete lack of activity.",
+    "Investigate the cause: Determine if Carol is on a documented leave, experiencing technical blockers, facing personal challenges, or is actively disengaged due to exhaustion.",
+    "Provide appropriate support: Depending on the identified cause, offer resources such as mental health support, temporary workload adjustments, or facilitate a discussion about career path and interest realignment.",
+    "Review workload and expectations: If disengagement is linked to burnout, assess past workload, project assignments, and current expectations to ensure they are sustainable and engaging moving forward."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T12:58:45.232Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T12:58:45.232Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f11210e2b76b8098e933e"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 45,
+  "riskLevel": "medium",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 3,
+    "tasksInProgress": 3,
+    "completedTasks": 10,
+    "overdueTasks": 0,
+    "pullRequestsCount": 3
+  },
+  "analysis": "Alice Developer exhibits very low direct coding activity over the last 30 days, with only 3 merge commits, all originating from another user ('nico-stef'). She has not initiated any commits or pull requests herself, nor interacted with any issues. This pattern is a significant indicator of potential disengagement from hands-on coding work, which can be a symptom or precursor to burnout, especially if her role is primarily that of an individual contributor developer. However, her task statistics present a contrasting picture: she has completed 10 out of 13 tasks and has no overdue tasks, suggesting effective management of her assigned workload in other areas. The absence of stress indicators in commit messages and zero overdue tasks mitigate the risk of acute burnout due to overwork. The primary concern is the discrepancy between the 'Developer' title and the observed GitHub activity, pointing towards potential role misalignment or quiet disengagement rather than traditional overload.",
+  "recommendations": [
+    "Conduct a one-on-one check-in with Alice to understand her current role perception, workload, and engagement levels. Inquire about any challenges or preferences regarding her tasks.",
+    "Clarify role expectations: Investigate if Alice's responsibilities have shifted towards more managerial or review-based tasks, or if her coding contributions are happening in other repositories not reflected here.",
+    "Assess project alignment: Explore if Alice is feeling underutilized, unmotivated by current projects, or if there's a skill gap she's hesitant to address. Consider assigning tasks that align more closely with her interests or career goals.",
+    "Monitor engagement: Continue to track both her task completion and coding contributions to identify any trends or further changes in her activity patterns."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T13:01:21.593Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T13:01:21.593Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f112c0e2b76b8098e9344"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10a"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Bob Developer exhibits a complete absence of activity across all tracked metrics (commits, pull requests, issues, and tasks) over the last 30 days. This extreme lack of engagement is a critical red flag, pointing towards severe disengagement, complete burnout leading to paralysis, an extended unrecorded absence, or being entirely blocked from performing any work. Such a complete cessation of activity represents a very high risk for the individual's well-being and productivity.",
+  "recommendations": [
+    "Immediately conduct a welfare check and direct managerial check-in to understand Bob's current status and well-being.",
+    "Investigate the root cause of the complete inactivity: Is Bob on leave, experiencing personal issues, severely blocked, or suffering from acute burnout?",
+    "Offer immediate support, including access to mental health resources or an Employee Assistance Program (EAP) if burnout or personal struggles are identified.",
+    "If Bob is expected to be working, re-evaluate all current assignments and workload, providing clear paths to unblock or adjust expectations.",
+    "Establish a clear communication plan and regular check-ins to monitor progress and provide ongoing support."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T13:01:32.411Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T13:01:32.411Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f11380e2b76b8098e934a"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10c"
+  },
+  "score": 85,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Carol Tester exhibits no recorded activity across any development metric (commits, pull requests, issues, tasks in progress, completed tasks, overdue tasks) for the entire last 30-day period. This complete absence of engagement is a critical red flag. While potential reasons could include extended leave or administrative issues, without such context, this pattern strongly suggests severe disengagement, being completely blocked, a significant lack of assigned work, or a complete shutdown often associated with advanced stages of burnout where an individual is unable to initiate or complete work. The lack of any associated commit messages further prevents analysis of specific stressors.",
+  "recommendations": [
+    "Initiate immediate, private outreach to Carol Tester to understand the root cause of the complete inactivity. This should be handled by a manager or team lead.",
+    "Investigate the reason for the lack of activity, considering possibilities such as extended leave, technical blockers, lack of assigned work, personal issues, or symptoms of burnout.",
+    "Based on the investigation, provide appropriate support. This could range from re-assigning meaningful tasks, offering mental health resources, addressing technical impediments, or discussing workload adjustments if a return to work is imminent after a period of leave.",
+    "Review internal processes to ensure clear visibility on developer status (e.g., 'on leave') to prevent misinterpretation of inactivity."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T13:01:44.214Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T13:01:44.214Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f1f54c8b4584948a4f442"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 55,
+  "riskLevel": "medium",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 3,
+    "tasksInProgress": 4,
+    "completedTasks": 22,
+    "overdueTasks": 0,
+    "pullRequestsCount": 3
+  },
+  "analysis": "The primary concern for Alice is her extremely low GitHub activity, with only 3 commits and 3 pull requests recorded in the last 30 days. This level of activity can be a strong indicator of disengagement, being blocked on tasks, or working extensively on non-coding activities that are not reflected in version control. While the commit messages themselves are neutral and do not show signs of stress or urgency, and her task management statistics appear healthy (0 overdue tasks, a good balance of 4 in-progress vs. 22 completed tasks), the lack of visible coding output is a significant flag. This doesn't necessarily suggest overwork-related burnout, but rather a potential risk for disengagement, which is a key symptom or precursor to burnout if left unaddressed. It warrants further investigation.",
+  "recommendations": [
+    "Conduct a direct 1:1 check-in with Alice to understand the reasons behind the very low commit frequency. Explore if she is blocked, working on different types of tasks (e.g., planning, architecture, meetings), or experiencing disengagement.",
+    "Review current role expectations and responsibilities. Clarify if her work has shifted to include more non-coding activities that aren't typically reflected in GitHub, or if there's a mismatch between her skills and assigned tasks.",
+    "Ensure Alice's current work is adequately challenging and engaging. If disengagement is a factor, explore opportunities to assign more stimulating or relevant tasks that align with her interests and growth."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:01:56.393Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:01:56.393Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f204791c406781a445bb9"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10a"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Complete absence of activity across all tracked metrics (GitHub commits, pull requests, issues, and task management) for the past 30 days. This indicates severe disengagement, potential absence, or a critical blockage, posing an extremely high risk for burnout, disengagement, or other significant workplace issues.",
+  "recommendations": [
+    "Immediate outreach from management/team lead to check on Bob Developer's well-being and current status.",
+    "Investigate the reason for the complete inactivity (e.g., medical leave, vacation, project reassignment, technical blockers, personal issues, or potential termination).",
+    "If disengagement or burnout is identified, offer appropriate support, resources, or a temporary break.",
+    "Review current task assignment and tracking processes to ensure all work is properly accounted for and supported."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:05:59.675Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:05:59.675Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f205091c406781a445bc3"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10c"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "The complete absence of any measurable activity across GitHub (commits, pull requests, issues) and task management (in progress, completed, overdue) over the past 30 days is an extremely concerning indicator. This pattern suggests profound disengagement, complete blockage, extended leave, or a severe form of burnout leading to a cessation of work. While not indicative of 'overwork' burnout, this absolute lack of activity signals a critical situation demanding immediate attention, as it represents a significant breakdown in productivity and engagement.",
+  "recommendations": [
+    "Immediate Managerial Check-in: A manager or team lead should urgently connect with Carol Tester to understand the underlying reasons for the complete inactivity.",
+    "Root Cause Investigation: Determine if Carol is on leave, facing severe technical blockers, lacks assigned work, or is experiencing significant personal or professional difficulties, including severe burnout.",
+    "Offer Support: Depending on the root cause, provide appropriate support such as workload re-evaluation, access to well-being resources, clarification of expectations, or assistance in unblocking any impediments."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:06:08.864Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:06:08.864Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f208e91c406781a445bdc"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 45,
+  "riskLevel": "medium",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 3,
+    "tasksInProgress": 4,
+    "completedTasks": 22,
+    "overdueTasks": 0,
+    "pullRequestsCount": 3
+  },
+  "analysis": "Alice shows a significant discrepancy between her task completion and GitHub activity. While she has an excellent record of completing 22 tasks with zero overdue, her GitHub activity is extremely low (3 commits in 30 days), and all commits are merge requests from another developer ('nico-stef'), indicating a lack of direct code contributions. This pattern suggests potential disengagement from core development work, a role misalignment, or being blocked from coding tasks, which are significant indicators of burnout risk or underlying issues that can lead to it, despite good task management in other areas.",
+  "recommendations": [
+    "Initiate a 1:1 conversation with Alice to understand the discrepancy between her high task completion and low personal code contributions. Investigate if she is working on other projects/repos not reflected here, or if she's facing blockers.",
+    "Clarify Alice's primary role and responsibilities. If she is expected to be a coding developer, ensure she is assigned coding tasks and has the necessary support/resources to contribute directly to the codebase.",
+    "Monitor for signs of disengagement, apathy, or stress during discussions. Explore her workload quality, satisfaction with current tasks, and overall well-being to address any underlying burnout symptoms."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:07:10.885Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:07:10.885Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f209991c406781a445be2"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10a"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Bob Developer exhibits a complete absence of activity across all monitored metrics (GitHub commits, pull requests, and task management) for the past 30 days. This extreme lack of engagement is a critical red flag. While it could potentially be explained by an approved leave of absence or a shift to unmonitored private projects, without such context, it strongly suggests profound disengagement, withdrawal, or a complete shutdown. These are severe indicators often associated with advanced stages of burnout, rather than active overwork. The complete cessation of visible work points to a highly concerning state requiring immediate attention.",
+  "recommendations": [
+    "Initiate an immediate welfare check: A manager or HR should reach out directly to Bob to ascertain his current status, well-being, and reason for inactivity.",
+    "Verify employment status and leave: Confirm if Bob is on an approved leave of absence, has resigned, or is facing other personal circumstances that explain the data.",
+    "Offer support and resources: If Bob is employed and struggling, provide access to mental health support services, Employee Assistance Programs (EAP), and discuss potential workload adjustments or a temporary break.",
+    "Re-evaluate role and engagement: If Bob is present and not on leave, conduct a candid conversation to understand the root causes of disengagement and explore options for re-engagement, role modification, or a different career path if current responsibilities are no longer viable."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:07:21.067Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:07:21.067Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f20a391c406781a445be8"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10c"
+  },
+  "score": 95,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "The complete absence of any measurable activity (commits, pull requests, issues, or task engagement) over the past 30 days is extremely concerning. This pattern strongly suggests severe disengagement, a prolonged period of being completely blocked with no visible progress, or a full withdrawal from work. While not indicative of traditional 'overwork' burnout, this level of inactivity points to a very high risk of burnout leading to professional disengagement, a 'quiet quitting' scenario, or a serious underlying issue preventing any contribution. If Carol Tester is expected to be an active contributor, this data signals a critical situation.",
+  "recommendations": [
+    "Immediate empathetic outreach from management or HR to understand the situation.",
+    "Investigate the root cause: determine if Carol is on leave, facing personal issues, severely blocked, or disengaged due to burnout.",
+    "Offer targeted support based on the identified root cause (e.g., mental health resources, unblocking assistance, workload adjustment, temporary leave).",
+    "Review role clarity, resource availability, and overall team environment if disengagement is confirmed."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T14:07:31.373Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T14:07:31.373Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f329aedb16a3a65802c87"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c108"
+  },
+  "score": 20,
+  "riskLevel": "low",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 7,
+    "tasksInProgress": 8,
+    "completedTasks": 22,
+    "overdueTasks": 0,
+    "pullRequestsCount": 4
+  },
+  "analysis": "Alice presents a generally healthy task management profile with zero overdue tasks and a high completion rate (22 out of 30 tasks completed). Her commit messages are neutral and do not show signs of stress, urgency, or frustration. The most notable observation is the relatively low volume of GitHub activity (7 commits, 4 pull requests in 30 days). While this could indicate a role with less direct coding, larger infrequent tasks, or a focus on merging others' work, it doesn't align with typical signs of overwork (e.g., high, rushed commit frequency) or severe disengagement (which would likely be accompanied by overdue tasks or significantly fewer completed tasks). The overall picture suggests a low risk of immediate burnout, though the low activity warrants a deeper understanding of her role and engagement.",
+  "recommendations": [
+    "Verify if Alice's current commit and pull request volume aligns with her role's expectations and project needs. It might be characteristic of a lead or architectural role, or indicative of larger, less frequent code contributions.",
+    "Conduct a check-in with Alice to understand her current workload, satisfaction with her contributions, and any potential blockers or areas where she feels underutilized or disengaged.",
+    "Ensure Alice has opportunities for challenging and meaningful work that fully utilizes her skills to prevent potential future disengagement due to lack of stimulation or perceived impact."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T15:24:10.924Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T15:24:10.924Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f32a3edb16a3a65802c8d"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10a"
+  },
+  "score": 98,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "Bob Developer shows a complete absence of all measurable work activity over the past 30 days. There are no commits, pull requests, issues, or any tasks assigned, in progress, or completed. This extreme lack of engagement is a critical indicator of potential severe burnout leading to complete withdrawal, an unrecorded leave of absence, or a more serious situation requiring immediate attention. While there are no signs of overwork, the lack of any contribution whatsoever represents a profound problem.",
+  "recommendations": [
+    "Conduct an immediate welfare check with Bob Developer to understand his current status and well-being.",
+    "Verify Bob's employment status and clarify if he is officially on leave, has left the organization, or if there's an administrative error in his work assignment.",
+    "If Bob is expected to be working, investigate the root cause of the complete disengagement and offer appropriate support, such as mental health resources or workload adjustments.",
+    "Review internal processes to ensure all developer statuses (e.g., leave, resignation) are accurately reflected in activity tracking systems."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T15:24:19.556Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T15:24:19.556Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f32afedb16a3a65802c93"
+  },
+  "userId": {
+    "$oid": "691ef50f873ec4ee53b3c10c"
+  },
+  "score": 100,
+  "riskLevel": "high",
+  "week": 4,
+  "year": 2025,
+  "factors": {
+    "commitsCount": 0,
+    "tasksInProgress": 0,
+    "completedTasks": 0,
+    "overdueTasks": 0,
+    "pullRequestsCount": 0
+  },
+  "analysis": "The data indicates a complete absence of activity across all tracked metrics for the past 30 days. Zero commits, pull requests, issues, and no tasks in any status (in progress, completed, or total) are recorded. This pattern is a critical red flag, strongly suggesting severe disengagement, a complete halt in work, or potential paralysis due to extreme burnout. Assuming Carol Tester is expected to be actively working, this level of inactivity points to a maximal risk of burnout, severe personal/professional issues, or that the individual is no longer active in the role/on an extended leave not reflected in the data.",
+  "recommendations": [
+    "Immediate and direct outreach from management to ascertain Carol's current status and well-being.",
+    "Verify if Carol is on leave, facing personal challenges, or if there's a system/data discrepancy.",
+    "If active, identify and address any severe blockers, lack of assigned work, or signs of disengagement/overwhelm.",
+    "Offer comprehensive support resources, including mental health services or professional coaching, to help address potential burnout or other challenges.",
+    "Re-evaluate workload and role responsibilities to ensure alignment with current capacity and engagement levels."
+  ],
+  "modelUsed": "gemini-2.5-flash",
+  "createdAt": {
+    "$date": "2025-11-20T15:24:31.434Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T15:24:31.434Z"
+  },
+  "__v": 0
+}]

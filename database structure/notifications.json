@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "691f1e8e91c406781a445b40"
+  },
+  "userId": {
+    "$oid": "691ef50e873ec4ee53b3c106"
+  },
+  "type": "task_completed",
+  "title": "Task Completed",
+  "message": "Alice Developer completed task: \"Deploy to production\"",
+  "taskId": {
+    "$oid": "691f0cf539b60180528618b8"
+  },
+  "projectId": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "isRead": false,
+  "createdAt": {
+    "$date": "2025-11-20T13:58:38.352Z"
+  },
+  "__v": 0
+}]

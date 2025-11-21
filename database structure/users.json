@@ -1,0 +1,108 @@
+[
+  {
+    "_id": {
+      "$oid": "691ef50e873ec4ee53b3c104"
+    },
+    "name": "Admin User",
+    "username": "admin",
+    "email": "admin@company.com",
+    "password": "$2b$10$CBkTtRaLbq04zGgXp6tgge.yceJDtM1fMx4Y.Eh6wr.b9YiZ33Hrq",
+    "role": "superadmin",
+    "teamId": null,
+    "githubRepos": [],
+    "createdAt": {
+      "$date": "2025-11-20T11:01:34.921Z"
+    },
+    "updatedAt": {
+      "$date": "2025-11-20T11:01:34.921Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "691ef50e873ec4ee53b3c106"
+    },
+    "name": "John Manager",
+    "username": "manager1",
+    "email": "manager@company.com",
+    "password": "$2b$10$CBkTtRaLbq04zGgXp6tgge.yceJDtM1fMx4Y.Eh6wr.b9YiZ33Hrq",
+    "role": "manager",
+    "teamId": {
+      "$oid": "691ef50f873ec4ee53b3c10e"
+    },
+    "githubRepos": [],
+    "createdAt": {
+      "$date": "2025-11-20T11:01:34.951Z"
+    },
+    "updatedAt": {
+      "$date": "2025-11-20T11:01:35.090Z"
+    },
+    "__v": 0,
+    "githubToken": ""
+  },
+  {
+    "_id": {
+      "$oid": "691ef50e873ec4ee53b3c108"
+    },
+    "name": "Alice Developer",
+    "username": "alice",
+    "email": "alice@company.com",
+    "password": "$2b$10$CBkTtRaLbq04zGgXp6tgge.yceJDtM1fMx4Y.Eh6wr.b9YiZ33Hrq",
+    "role": "developer",
+    "teamId": {
+      "$oid": "691ef50f873ec4ee53b3c10e"
+    },
+    "githubUsername": "adrianbetea",
+    "githubRepos": [],
+    "createdAt": {
+      "$date": "2025-11-20T11:01:34.978Z"
+    },
+    "updatedAt": {
+      "$date": "2025-11-20T11:01:35.090Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "691ef50f873ec4ee53b3c10a"
+    },
+    "name": "Bob Developer",
+    "username": "bob",
+    "email": "bob@company.com",
+    "password": "$2b$10$CBkTtRaLbq04zGgXp6tgge.yceJDtM1fMx4Y.Eh6wr.b9YiZ33Hrq",
+    "role": "developer",
+    "teamId": {
+      "$oid": "691ef50f873ec4ee53b3c10e"
+    },
+    "githubUsername": "bob-dev",
+    "githubRepos": [],
+    "createdAt": {
+      "$date": "2025-11-20T11:01:35.007Z"
+    },
+    "updatedAt": {
+      "$date": "2025-11-20T11:01:35.090Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "691ef50f873ec4ee53b3c10c"
+    },
+    "name": "Carol Tester",
+    "username": "carol",
+    "email": "carol@company.com",
+    "password": "$2b$10$CBkTtRaLbq04zGgXp6tgge.yceJDtM1fMx4Y.Eh6wr.b9YiZ33Hrq",
+    "role": "tester",
+    "teamId": {
+      "$oid": "691ef50f873ec4ee53b3c10e"
+    },
+    "githubRepos": [],
+    "createdAt": {
+      "$date": "2025-11-20T11:01:35.034Z"
+    },
+    "updatedAt": {
+      "$date": "2025-11-20T11:01:35.090Z"
+    },
+    "__v": 0
+  }
+]

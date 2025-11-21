@@ -1,0 +1,111 @@
+[{
+  "_id": {
+    "$oid": "691ef50f873ec4ee53b3c111"
+  },
+  "name": "E-commerce Platform",
+  "description": "A modern e-commerce solution with React and Node.js",
+  "githubLink": "https://github.com/company/ecommerce",
+  "teamId": {
+    "$oid": "691ef50f873ec4ee53b3c10e"
+  },
+  "members": [
+    {
+      "$oid": "691ef50e873ec4ee53b3c108"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10a"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10c"
+    }
+  ],
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-11-20T11:01:35.133Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T11:01:35.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691ef50f873ec4ee53b3c113"
+  },
+  "name": "Mobile App Backend",
+  "description": "REST API for mobile applications",
+  "githubLink": "https://github.com/company/mobile-backend",
+  "teamId": {
+    "$oid": "691ef50f873ec4ee53b3c10e"
+  },
+  "members": [
+    {
+      "$oid": "691ef50e873ec4ee53b3c108"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10a"
+    }
+  ],
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-11-20T11:01:35.176Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T11:01:35.176Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691ef50f873ec4ee53b3c115"
+  },
+  "name": "Analytics Dashboard",
+  "description": "Real-time analytics and reporting system",
+  "githubLink": "https://github.com/company/analytics",
+  "teamId": {
+    "$oid": "691ef50f873ec4ee53b3c10e"
+  },
+  "members": [
+    {
+      "$oid": "691ef50f873ec4ee53b3c10a"
+    },
+    {
+      "$oid": "691ef50f873ec4ee53b3c10c"
+    }
+  ],
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-11-20T11:01:35.204Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T11:01:35.204Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691ef740f2c3cec2f46d8873"
+  },
+  "name": "LLM",
+  "description": "project of llm\n",
+  "githubLink": "https://github.com/nico-stef/NeuroCore.git",
+  "teamId": {
+    "$oid": "691ef50f873ec4ee53b3c10e"
+  },
+  "members": [
+    {
+      "$oid": "691ef50e873ec4ee53b3c106"
+    },
+    {
+      "$oid": "691ef50e873ec4ee53b3c108"
+    }
+  ],
+  "status": "active",
+  "createdAt": {
+    "$date": "2025-11-20T11:10:56.367Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T11:11:02.011Z"
+  },
+  "__v": 1
+}]
