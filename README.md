@@ -105,6 +105,7 @@ Frontend va rula pe `http://localhost:8080`
 
 Structura bazei de date pentru acest proiect este inclusă în directorul **database structure** in **format JSON**, fiecare fișier reprezentând o colecție MongoDB.  
 Aceste fișiere pot fi folosite pentru a importa rapid datele într-o instanță MongoDB.  
+Observatie: Userii cu functie de manager trebuie să aibă în baza de date un token GitHub pentru ca aplicația să poată analiza activitatea proiectelor sale
 
 ## 👥 Credențiale de Test
 
