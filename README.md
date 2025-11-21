@@ -75,11 +75,6 @@ GEMINI_API_KEY=            # Cheia API pentru Google Gemini
 
 ```
 
-Populează baza de date cu date de test:
-```bash
-npm run seed
-```
-
 Pornește serverul:
 ```bash
 npm run dev
